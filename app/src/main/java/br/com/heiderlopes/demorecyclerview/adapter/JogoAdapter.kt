@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,14 +50,10 @@ class JogoAdapter(private val jogos: List<Jogo>,
             ivJogo.setImageDrawable(ContextCompat.getDrawable(context, jogo.resourceId))
             tvNome.text = jogo.titulo
             tvAnoLancamento.text = jogo.anoLancamento.toString()
-            tvDescricao.text = jogo.descricao
+            tvDescricao.text = Html.fromHtml(context.getString(jogo.descricao))
 
             setOnClickListener { listener(jogo) }
         }
-    }
-
-    interface ClickListener {
-        fun onClick(view: View, position: Int)
     }
     /*
     * Vale ressaltar que os métodos onCreateViewHolder e onBindViewHolder não são chamados
